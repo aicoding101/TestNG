@@ -21,7 +21,12 @@ public class SAD {
     private static String mainHandle;
 
 //    <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-//    GET/QUIT DRIVER
+//    SET/GET/QUIT DRIVER
+
+    public static void setDriver(WebDriver driverOther) {
+        driver = driverOther;
+    }
+
     /*
             getDriver method is called to
             -> first: set up the driver based on information provided from the configuration.properties
@@ -447,6 +452,3 @@ public class SAD {
 
 }
 
-enum Locators{
-    xpath, id, name, linkText, cssSelector, className, parcialLinkText, tagName
-}
