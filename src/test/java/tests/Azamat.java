@@ -1,5 +1,6 @@
 package tests;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -9,7 +10,7 @@ import org.testng.annotations.Test;
 import utilites.Config;
 import utilites.Driver;
 
-public class Azamat {
+public class Azamat{
 
     @Test
     public void createProductCategories(){
