@@ -99,9 +99,9 @@ public class Cholpon {
         WebElement searchBox = Driver.getDriver().findElement(By.className("o_searchview_input"));
         searchBox.sendKeys("ice cream" + Keys.ENTER);
 
-        WebElement a = Driver.getDriver().findElement(By.className("ui-sortable"));
+        WebElement ab = Driver.getDriver().findElement(By.className("ui-sortable"));
 
-        Assert.assertTrue(a.isDisplayed());
+        Assert.assertTrue(ab.isDisplayed());
 
     }
 }
