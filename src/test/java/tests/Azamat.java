@@ -9,7 +9,8 @@ import org.testng.annotations.Test;
 import utilites.Config;
 import utilites.Driver;
 
-public class Azamat {
+public class Azamat{
+
 
     @Test
     public void createProductCategories(){
