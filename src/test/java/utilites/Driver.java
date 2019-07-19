@@ -27,7 +27,24 @@ public class Driver extends SAD{
 
     }
 
-    public static WebDriver getDriver() {
+    public static WebDriver getDriver(){
+        if (driver == null){
+            switch (Config.getProperty("browser")){
+                case "chrome":
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+                    break;
+                case "firefox":
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver();
+                    break;
+                default:
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver();
+            }
+            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+            driver.manage().window().maximize();
+        }
         return driver;
     }
 }
