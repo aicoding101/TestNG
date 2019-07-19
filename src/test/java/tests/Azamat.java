@@ -10,20 +10,20 @@ import org.testng.annotations.Test;
 import utilites.Config;
 import utilites.Driver;
 
-public class Azamat{
+public class Azamat extends TestBase{
 
     @Test
     public void createProductCategories(){
-        Driver.getDriver().get(Config.getProperty("url"));
-
-        WebElement login = Driver.getDriver().findElement(By.id("login"));
-        login.sendKeys(Config.getProperty("username"));
-
-        WebElement password = Driver.getDriver().findElement(By.id("password"));
-        password.sendKeys(Config.getProperty("password")+ Keys.ENTER);
-
-        WebElement inventory = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=347&action=']"));
-        inventory.click();
+//        Driver.getDriver().get(Config.getProperty("url"));
+//
+//        WebElement login = Driver.getDriver().findElement(By.id("login"));
+//        login.sendKeys(Config.getProperty("username"));
+//
+//        WebElement password = Driver.getDriver().findElement(By.id("password"));
+//        password.sendKeys(Config.getProperty("password")+ Keys.ENTER);
+//
+//        WebElement inventory = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=347&action=']"));
+//        inventory.click();
 
         WebElement products = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=351&action=']"));
         products.click();
@@ -57,16 +57,16 @@ public class Azamat{
     }
     @Test
     public void discardScrapOrdersCreation(){
-        Driver.getDriver().get(Config.getProperty("url"));
-
-        WebElement login = Driver.getDriver().findElement(By.id("login"));
-        login.sendKeys(Config.getProperty("userLogin"));
-
-        WebElement password = Driver.getDriver().findElement(By.id("password"));
-        password.sendKeys(Config.getProperty("userPassword")+ Keys.ENTER);
-
-        WebElement inventory = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=347&action=']"));
-        inventory.click();
+//        Driver.getDriver().get(Config.getProperty("url"));
+//
+//        WebElement login = Driver.getDriver().findElement(By.id("login"));
+//        login.sendKeys(Config.getProperty("userLogin"));
+//
+//        WebElement password = Driver.getDriver().findElement(By.id("password"));
+//        password.sendKeys(Config.getProperty("userPassword")+ Keys.ENTER);
+//
+//        WebElement inventory = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=347&action=']"));
+//        inventory.click();
 
         WebElement scrap = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=369&action=501']"));
         scrap.click();
