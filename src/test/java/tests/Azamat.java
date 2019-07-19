@@ -22,7 +22,7 @@ public class Azamat{
         WebElement password = Driver.getDriver().findElement(By.id("password"));
         password.sendKeys(Config.getProperty("password")+ Keys.ENTER);
 
-        WebElement inventory = Driver.getDriver().findElement(By.xpath("//a[@class='oe_menu_toggler']//span[contains(text(), 'Inventory')]"));
+        WebElement inventory = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=347&action=']"));
         inventory.click();
 
         WebElement products = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=351&action=']"));
@@ -53,6 +53,32 @@ public class Azamat{
         WebElement productHeader = Driver.getDriver().findElement(By.xpath("//span[@class='o_field_char o_field_widget o_required_modifier']"));
 
         Assert.assertEquals(productHeader.getText(), Config.getProperty("productName"));
+
+    }
+    @Test
+    public void scrapOrdersCreation(){
+        Driver.getDriver().get(Config.getProperty("url"));
+
+        WebElement login = Driver.getDriver().findElement(By.id("login"));
+        login.sendKeys(Config.getProperty("userLogin"));
+
+        WebElement password = Driver.getDriver().findElement(By.id("password"));
+        password.sendKeys(Config.getProperty("userPassword")+ Keys.ENTER);
+
+        WebElement inventory = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=347&action=']"));
+        inventory.click();
+
+        WebElement scrap = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=369&action=501']"));
+        scrap.click();
+
+        WebElement createButton = Driver.getDriver().findElement(By.xpath("//div[@class='o_list_buttons']/button[1]"));
+        createButton.click();
+
+        WebElement discardButton = Driver.getDriver().findElement(By.xpath("//button[@class='btn btn-default btn-sm o_form_button_cancel']"));
+        discardButton.click();
+        WebElement scrapOrdersHeader = Driver.getDriver().findElement(By.xpath("//ol[@class='breadcrumb']"));
+
+        Assert.assertTrue(scrapOrdersHeader.isEnabled(), "Discard button is not clickable!");
 
 
 
