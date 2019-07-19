@@ -6,8 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import utilites.Config;
-import utilites.Driver;
+import utilites.*;
 
 public class Azamat{
 
@@ -79,10 +78,6 @@ public class Azamat{
         WebElement scrapOrdersHeader = Driver.getDriver().findElement(By.xpath("//ol[@class='breadcrumb']"));
 
         Assert.assertTrue(scrapOrdersHeader.isEnabled(), "Discard button is not clickable!");
-
-
-
-
     }
 
 }
