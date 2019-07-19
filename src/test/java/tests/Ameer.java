@@ -12,7 +12,6 @@ public class Ameer extends TestBase {
     @Test
     public void WarehouseManagement(){
         SAD.WaitTime(20);
-        SAD.PageLoadWaitTime(20);
 
         SAD.FindAndClick(Locators.xpath, "//span[contains(text(),'Warehouse Management')]");
 
@@ -40,6 +39,8 @@ public class Ameer extends TestBase {
 //    SOME VALUES MUST BE CHANGED AFTER RUNNING THE TEST ONCE TO ENSURE PROPER RUN AFTERWARDS
     @Test
     public void ProductGeneralInfo() throws InterruptedException{
+        SAD.WaitTime(20);
+
         SAD.FindAndClick(Locators.xpath, "//span[contains(text(),'Products')]");
         Assert.assertTrue(SAD.FindAndDisplay(Locators.xpath, "//li[contains(text(),'Products')]"));
 
