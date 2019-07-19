@@ -62,7 +62,7 @@ public class Ameer extends TestBase {
         SAD.ClearField(Locators.name, "barcode");
 
 //        MUST BE DIFFERENT EACH TEST
-        SAD.FindAndSendKeys(Locators.name, "barcode", "#12345678952");
+        SAD.FindAndSendKeys(Locators.name, "barcode", "#1234567899");
 
         SAD.FindAndClick(Locators.xpath, "//input[@class='o_input']");
         SAD.ClearField(Locators.xpath, "//input[@class='o_input']");
