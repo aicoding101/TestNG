@@ -56,7 +56,7 @@ public class Azamat{
 
     }
     @Test
-    public void scrapOrdersCreation(){
+    public void discardScrapOrdersCreation(){
         Driver.getDriver().get(Config.getProperty("url"));
 
         WebElement login = Driver.getDriver().findElement(By.id("login"));
