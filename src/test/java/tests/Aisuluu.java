@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class Aisuluu {
 
     @Test
+
         public void discardFile(){
         Driver.getDriver().get(Config.getProperty("url"));
             WebElement login = Driver.getDriver().findElement(By.id("login"));
