@@ -11,9 +11,7 @@ import utilites.SAD;
 import utilites.TestBase;
 
 public class Aziza extends TestBase {
-
     @Test
-
     public void cancelFileImport(){
 
 //        SAD.getDriver().get(Config.getProperty("url"));
@@ -41,5 +39,4 @@ public class Aziza extends TestBase {
         Assert.assertTrue(cancelButton.isDisplayed(), "Cancel button is not displayed");
 
     }
-
 }

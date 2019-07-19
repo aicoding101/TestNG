@@ -1,30 +1,16 @@
 package tests;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import utilites.Config;
-import utilites.Driver;
+import utilites.*;
 
 public class Azamat extends TestBase{
-
     @Test
     public void createProductCategories(){
-//        Driver.getDriver().get(Config.getProperty("url"));
-//
-//        WebElement login = Driver.getDriver().findElement(By.id("login"));
-//        login.sendKeys(Config.getProperty("username"));
-//
-//        WebElement password = Driver.getDriver().findElement(By.id("password"));
-//        password.sendKeys(Config.getProperty("password")+ Keys.ENTER);
-//
-//        WebElement inventory = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=347&action=']"));
-//        inventory.click();
-
         WebElement products = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=351&action=']"));
         products.click();
         WebElement productCategories = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=354&action=232']"));
@@ -55,19 +41,9 @@ public class Azamat extends TestBase{
         Assert.assertEquals(productHeader.getText(), Config.getProperty("productName"));
 
     }
+
     @Test
     public void discardScrapOrdersCreation(){
-//        Driver.getDriver().get(Config.getProperty("url"));
-//
-//        WebElement login = Driver.getDriver().findElement(By.id("login"));
-//        login.sendKeys(Config.getProperty("userLogin"));
-//
-//        WebElement password = Driver.getDriver().findElement(By.id("password"));
-//        password.sendKeys(Config.getProperty("userPassword")+ Keys.ENTER);
-//
-//        WebElement inventory = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=347&action=']"));
-//        inventory.click();
-
         WebElement scrap = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=369&action=501']"));
         scrap.click();
 
@@ -79,10 +55,5 @@ public class Azamat extends TestBase{
         WebElement scrapOrdersHeader = Driver.getDriver().findElement(By.xpath("//ol[@class='breadcrumb']"));
 
         Assert.assertTrue(scrapOrdersHeader.isEnabled(), "Discard button is not clickable!");
-
-
-
-
     }
-
 }

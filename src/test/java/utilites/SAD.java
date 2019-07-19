@@ -58,6 +58,7 @@ public class SAD {
             driver = null;
         }
     }
+
     public static void SetChromeDriver(String link) {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -73,8 +74,6 @@ public class SAD {
         driver.manage().window().maximize();
         WaitTime(10);
     }
-
-
 
 //    <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 //    SIMPLE METHODS

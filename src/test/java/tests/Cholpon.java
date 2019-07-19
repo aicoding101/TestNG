@@ -48,6 +48,7 @@ public class Cholpon extends TestBase{
         discard.click();
         Assert.assertEquals(Driver.getDriver().getCurrentUrl(), "http://54.148.96.210/web?#id=&view_type=form&model=product.template&menu_id=378&action=521", "Discard Button verification is Not Passes");
     }
+
     @Test
     public void SmokeSuite255() {
         Driver.getDriver().get(Config.getProperty("url"));

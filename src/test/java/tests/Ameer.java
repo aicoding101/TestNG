@@ -9,7 +9,6 @@ import org.testng.annotations.Test;
 import utilites.*;
 
 public class Ameer extends TestBase {
-
     @Test
     public void WarehouseManagement(){
         SAD.WaitTime(20);
@@ -37,39 +36,46 @@ public class Ameer extends TestBase {
         SAD.FindAndClick(Locators.xpath, "//span[contains(text(),'Ok')]");
     }
 
+//    PLEASE READ COMMENTS INSIDE TEST
+//    SOME VALUES MUST BE CHANGED AFTER RUNNING THE TEST ONCE TO ENSURE PROPER RUN AFTERWARDS
     @Test
-    public void ProductGeneralInfo(){
+    public void ProductGeneralInfo() throws InterruptedException{
         SAD.FindAndClick(Locators.xpath, "//span[contains(text(),'Products')]");
         Assert.assertTrue(SAD.FindAndDisplay(Locators.xpath, "//li[contains(text(),'Products')]"));
 
         SAD.FindAndClick(Locators.xpath, "//button[@class='btn btn-primary btn-sm o-kanban-button-new btn-default']");
 
-        SAD.FindAndSendKeys(Locators.xpath, "//input[@placeholder='Product Name']", "Sample Product");
+//        NAME:
+//        MUST BE DIFFERENT EACH TEST
+        SAD.FindAndSendKeys(Locators.xpath, "//input[@placeholder='Product Name']", "Aibek's glasses");
 
-//        SAD.FindAndClick(Locators.className, "o_input o_field_widget o_required_modifier");
-//        SAD.FindAndClick(Locators.xpath, "//option[@value='\"product\"']");
-//
-//        SAD.FindAndClick(Locators.xpath, "//input[@class='o_input ui-autocomplete-input']");
-//        SAD.FindAndClick(Locators.xpath, "//a[contains(text(),'All / Artistic')]");
+        SAD.FindAndClick(Locators.xpath, "//select[@class='o_input o_field_widget o_required_modifier']");
+        SAD.FindAndClick(Locators.xpath, "//option[contains(text(),'Stockable Product')]");
+
+        SAD.FindAndClick(Locators.xpath, "//input[@class='o_input ui-autocomplete-input']");
+        SAD.FindAndClick(Locators.xpath, "//a[contains(text(),'All / Artistic')]");
 
         SAD.ClearField(Locators.name, "default_code");
         SAD.FindAndSendKeys(Locators.name, "default_code", "Reference Name");
 
         SAD.ClearField(Locators.name, "barcode");
-        SAD.FindAndSendKeys(Locators.name, "barcode", "#1234567890");
 
+//        MUST BE DIFFERENT EACH TEST
+        SAD.FindAndSendKeys(Locators.name, "barcode", "#12345678952");
+
+        SAD.FindAndClick(Locators.xpath, "//input[@class='o_input']");
         SAD.ClearField(Locators.xpath, "//input[@class='o_input']");
-        SAD.FindAndSendKeys(Locators.xpath, "//input[@class='o_input']", "200.00");
+        SAD.FindAndSendKeys(Locators.xpath, "//input[@class='o_input']", "1000000.00");
 
+        SAD.FindAndClick(Locators.xpath, "//td//div//div//input[@class='o_input']");
         SAD.ClearField(Locators.xpath, "//td//div//div//input[@class='o_input']");
-        SAD.FindAndSendKeys(Locators.xpath, "//td//div//div//input[@class='o_input']", "175.00");
+        SAD.FindAndSendKeys(Locators.xpath, "//td//div//div//input[@class='o_input']", "1050000.00");
 
         SAD.FindAndClick(Locators.xpath, "//button[contains(text(),'Save')]");
 
-
-
-        Assert.assertEquals(SAD.GetWebElement(Locators.xpath, "//ol//li[@class='active']").getText(), "Sample Product");
+        Thread.sleep(2000);
+//        CHANGE ACCORDING TO NAME ABOVE
+        Assert.assertEquals(SAD.GetWebElement(Locators.xpath, "//ol//li[@class='active']").getText(), "[Reference Name] " + "Aibek's glasses");
 
     }
-
 }

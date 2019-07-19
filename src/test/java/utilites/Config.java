@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class Config {
-
     private static Properties p = new Properties();
 
     static {
@@ -17,12 +16,9 @@ public class Config {
         } catch (IOException e) {
             System.out.println("Properties file not found");
         }
-
     }
 
     public static String getProperty(String keyword) {
-
         return p.getProperty(keyword);
     }
-
 }
