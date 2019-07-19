@@ -3,6 +3,7 @@ package utilites;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -36,6 +37,17 @@ public class TestBase {
         SAD.FindAndSendKeysENTER(Locators.id, "password", "alsfuh7we69");
         SAD.FindAndClick(Locators.linkText, "Inventory");
     }
+
+//    @BeforeMethod
+//    public void Setup(){
+//        Driver.getDriver().get(Config.getProperty("url"));
+//        WebElement login = Driver.getDriver().findElement(By.id("login"));
+//        login.sendKeys(Config.getProperty("username"));
+//        WebElement password = Driver.getDriver().findElement(By.id("password"));
+//        password.sendKeys(Config.getProperty("password") + Keys.ENTER);
+//        WebElement inventory = Driver.getDriver().findElement(By.linkText("Inventory"));
+//        inventory.click();
+//    }
 
     @AfterMethod
     public void tearDown() {
