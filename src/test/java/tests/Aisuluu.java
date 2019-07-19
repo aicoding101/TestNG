@@ -67,7 +67,7 @@ public class Aisuluu {
         }
 
         @Test
-        public void inventoryManagement() throws InterruptedException {
+        public void inventoryManagement()  {
             Driver.getDriver().get(Config.getProperty("url"));
             WebElement login=Driver.getDriver().findElement(By.id("login"));
             login.sendKeys(Config.getProperty("usernameManager"));
@@ -111,9 +111,9 @@ public class Aisuluu {
 //            Select select1 = new Select(Driver.getDriver().findElement(By.xpath("(//li[@class='ui-menu-item'])[1]")));
 //            select1.selectByIndex(1);
             // Driver.getDriver().findElement(By.xpath("(//*[@class = 'o_input ui-autocomplete-input'])[3]")).click();
-            Thread.sleep(1000);
+
             Driver.getDriver().findElement(By.linkText("YourCompany: 7yy")).click();
-            Thread.sleep(1000);
+
 
             WebElement showDetailedOperations = Driver.getDriver().findElement(By.xpath("(//input[@type='checkbox'])[3]"));
             showDetailedOperations.click();
