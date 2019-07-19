@@ -21,6 +21,7 @@ public class Config {
     }
 
     public static String getProperty(String keyword) {
+
         return p.getProperty(keyword);
     }
 
