@@ -44,9 +44,8 @@ public class SAD {
                     WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver();
             }
-
-            driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
-            driver.manage().window().maximize();
+            WaitTime(12);
+            MaximizeWindow();
         }
         return driver;
     }
@@ -59,36 +58,57 @@ public class SAD {
             driver = null;
         }
     }
+    public static void SetChromeDriver(String link) {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.get(link);
+        driver.manage().window().maximize();
+        WaitTime(10);
+    }
+
+    public static void SetGeckoDriver(String link){
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
+        driver.get(link);
+        driver.manage().window().maximize();
+        WaitTime(10);
+    }
+
+
 
 //    <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 //    SIMPLE METHODS
 
-//    Takes in number of seconds to implicitly wait
+    //    Takes in number of seconds to implicitly wait
     public static void WaitTime(int time) {
         driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
     }
 
-//    Maximizes current browser window
+    public static void PageLoadWaitTime(int time) {
+        driver.manage().timeouts().pageLoadTimeout(time, TimeUnit.SECONDS);
+    }
+
+    //    Maximizes current browser window
     public static void MaximizeWindow(){
         driver.manage().window().maximize();
     }
 
-//    Navigates to the page of the given link
+    //    Navigates to the page of the given link
     public static void NavigateToPage(String link){
         driver.navigate().to(link);
     }
 
-//    Creates an alert
+    //    Creates an alert
     public static void CreateAlert(){
         setAlert(driver.switchTo().alert());
     }
 
-//    Creates a window handle
+    //    Creates a window handle
     public static void CreateMainHandle() {
         setMainHandle(driver.getWindowHandle());
     }
 
-//    Switches window to given handle
+    //    Switches window to given handle
     public static void SwitchWindow(String handle) {
         driver.switchTo().window(handle);
     }
@@ -109,7 +129,7 @@ public class SAD {
 //    value: value of element based on locator (eg. locator name: element "some name")
 //    send: value to be sent to input box (eg. locator id: element "some id", send "some text you want to input")
 
-//    Find element (clickable field/link) in page and click
+    //    Find element (clickable field/link) in page and click
 //    Can also be used to click on random text (when you want to click away from a certain field)
     public static void FindAndClick(Locators locator, String value){
         switch (locator){
@@ -140,7 +160,7 @@ public class SAD {
         }
     }
 
-//    Find element (text box) in a page and send given keys
+    //    Find element (text box) in a page and send given keys
     public static void FindAndSendKeys(Locators locator, String value, String send){
         switch (locator){
             case xpath:
@@ -170,7 +190,7 @@ public class SAD {
         }
     }
 
-//    Find element (text box) in a page and send given keys, then enter
+    //    Find element (text box) in a page and send given keys, then enter
     public static void FindAndSendKeysENTER(Locators locator, String value, String send){
         switch (locator){
             case xpath:
@@ -200,38 +220,30 @@ public class SAD {
         }
     }
 
-//    Find element on a page and check if it is displayed
+    //    Find element on a page and check if it is displayed
     public static boolean FindAndDisplay(Locators locator, String value) {
         switch (locator){
             case xpath:
-                driver.findElement(By.xpath(value)).isDisplayed();
-                break;
+                return driver.findElement(By.xpath(value)).isDisplayed();
             case id:
-                driver.findElement(By.id(value)).isDisplayed();
-                break;
+                return driver.findElement(By.id(value)).isDisplayed();
             case name:
-                driver.findElement(By.name(value)).isDisplayed();
-                break;
+                return driver.findElement(By.name(value)).isDisplayed();
             case cssSelector:
-                driver.findElement(By.cssSelector(value)).isDisplayed();
-                break;
+                return driver.findElement(By.cssSelector(value)).isDisplayed();
             case tagName:
-                driver.findElement(By.tagName(value)).isDisplayed();
-                break;
+                return driver.findElement(By.tagName(value)).isDisplayed();
             case parcialLinkText:
-                driver.findElement(By.partialLinkText(value)).isDisplayed();
-                break;
+                return driver.findElement(By.partialLinkText(value)).isDisplayed();
             case className:
-                driver.findElement(By.className(value)).isDisplayed();
-                break;
+                return driver.findElement(By.className(value)).isDisplayed();
             case linkText:
-                driver.findElement(By.linkText(value)).isDisplayed();
-                break;
+                return driver.findElement(By.linkText(value)).isDisplayed();
         }
         return false;
     }
 
-//    Clears text from given textbox element
+    //    Clears text from given textbox element
     public static void ClearField(Locators locator, String value){
         switch (locator){
             case xpath:
@@ -261,7 +273,7 @@ public class SAD {
         }
     }
 
-//    Compare element text with given text
+    //    Compare element text with given text
     public static boolean CompareText(Locators locator, String value, String compare){
         switch (locator){
             case xpath:
@@ -284,7 +296,7 @@ public class SAD {
         return false;
     }
 
-//    Takes an integer of pixels to determine the range scrolled within a page (scrolls down)
+    //    Takes an integer of pixels to determine the range scrolled within a page (scrolls down)
     public static void ScrollPage(int pixels){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         if(pixels > 0){
@@ -294,12 +306,8 @@ public class SAD {
         }
     }
 
-//    <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
-//    GENERAL USING INSTANCE VARIABLES
-
-//    Scroll to given element
-    public static void ScrollToElement(Locators locator, String value){
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+    //    Returns a web element of the values passed in the parameter
+    public static WebElement GetWebElement(Locators locator, String value){
         switch (locator){
             case xpath:
                 setElement(driver.findElement(By.xpath(value)));
@@ -326,9 +334,51 @@ public class SAD {
                 setElement(driver.findElement(By.linkText(value)));
                 break;
         }
+        return getElement();
     }
 
-//    Creates a select object
+//    <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+//    GENERAL USING INSTANCE VARIABLES
+
+    //    Scroll to given element
+    public static void ScrollToElement(Locators locator, String value){
+        switch (locator){
+            case xpath:
+                setElement(driver.findElement(By.xpath(value)));
+                ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",getElement());
+                break;
+            case id:
+                setElement(driver.findElement(By.id(value)));
+                ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",getElement());
+                break;
+            case name:
+                setElement(driver.findElement(By.name(value)));
+                ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",getElement());
+                break;
+            case cssSelector:
+                setElement(driver.findElement(By.cssSelector(value)));
+                ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",getElement());
+                break;
+            case tagName:
+                setElement(driver.findElement(By.tagName(value)));
+                ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",getElement());
+                break;
+            case parcialLinkText:
+                setElement(driver.findElement(By.partialLinkText(value)));
+                ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",getElement());
+                break;
+            case className:
+                setElement(driver.findElement(By.className(value)));
+                ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",getElement());
+                break;
+            case linkText:
+                setElement(driver.findElement(By.linkText(value)));
+                ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();",getElement());
+                break;
+        }
+    }
+
+    //    Creates a select object
     public static void CreateSelectObject(Locators locator, String value){
         switch (locator){
             case xpath:
@@ -358,7 +408,7 @@ public class SAD {
         }
     }
 
-//    Moves cursor to given element (hover over)
+    //    Moves cursor to given element (hover over)
     public static void MoveToElement(Locators locator, String value){
         WebElement web = null;
         switch (locator){
@@ -400,9 +450,9 @@ public class SAD {
 //    <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
 //    FINISHERS
 
-//    THAT'S IT!
+    //    THAT'S IT!
     public  static void ThatsIt(){ driver.close(); }
-//    DONE!
+    //    DONE!
     public  static void Done(){
         driver.quit();
     }
