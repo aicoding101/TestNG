@@ -26,6 +26,7 @@ public class Driver extends SAD{
         driver.manage().window().maximize();
 
     }
+
     public static WebDriver getDriver(){
         if (driver == null){
             switch (Config.getProperty("browser")){
@@ -47,3 +48,7 @@ public class Driver extends SAD{
         return driver;
     }
 }
+
+
+
+
