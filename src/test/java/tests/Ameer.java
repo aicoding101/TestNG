@@ -35,8 +35,9 @@ public class Ameer extends TestBase {
         SAD.FindAndClick(Locators.xpath, "//span[contains(text(),'Ok')]");
     }
 
-//    PLEASE READ COMMENTS INSIDE TEST
+    //    PLEASE READ COMMENTS INSIDE ProductGeneralInfo() AFTER FIRST TEST
 //    SOME VALUES MUST BE CHANGED AFTER RUNNING THE TEST ONCE TO ENSURE PROPER RUN AFTERWARDS
+//    VALUES TO CHANGE ARE SURROUNDED WITH --> /*change*/VALUE/*change*/
     @Test
     public void ProductGeneralInfo() throws InterruptedException{
         SAD.WaitTime(20);
@@ -48,7 +49,7 @@ public class Ameer extends TestBase {
 
 //        NAME:
 //        MUST BE DIFFERENT EACH TEST
-        SAD.FindAndSendKeys(Locators.xpath, "//input[@placeholder='Product Name']", "Aibek's glasses");
+        SAD.FindAndSendKeys(Locators.xpath, "//input[@placeholder='Product Name']", /*change*/"Aibek's Glasses"/*change*/);
 
         SAD.FindAndClick(Locators.xpath, "//select[@class='o_input o_field_widget o_required_modifier']");
         SAD.FindAndClick(Locators.xpath, "//option[contains(text(),'Stockable Product')]");
@@ -62,7 +63,7 @@ public class Ameer extends TestBase {
         SAD.ClearField(Locators.name, "barcode");
 
 //        MUST BE DIFFERENT EACH TEST
-        SAD.FindAndSendKeys(Locators.name, "barcode", "#1234567899");
+        SAD.FindAndSendKeys(Locators.name, "barcode", /*change*/"#1234567900"/*change*/);
 
         SAD.FindAndClick(Locators.xpath, "//input[@class='o_input']");
         SAD.ClearField(Locators.xpath, "//input[@class='o_input']");
@@ -76,7 +77,7 @@ public class Ameer extends TestBase {
 
         Thread.sleep(2000);
 //        CHANGE ACCORDING TO NAME ABOVE
-        Assert.assertEquals(SAD.GetWebElement(Locators.xpath, "//ol//li[@class='active']").getText(), "[Reference Name] " + "Aibek's glasses");
+        Assert.assertEquals(SAD.GetWebElement(Locators.xpath, "//ol//li[@class='active']").getText(), "[Reference Name] " + /*change*/"Aibek's Glasses"/*change*/);
 
     }
 }

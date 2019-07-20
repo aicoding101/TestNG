@@ -20,7 +20,7 @@ public class Azamat extends TestBase{
         createButton.click();
 
         WebElement inputCategoryName = Driver.getDriver().findElement(By.xpath("//input[@name='name']"));
-        inputCategoryName.sendKeys(Config.getProperty("productName"));
+        inputCategoryName.sendKeys("productName");
 
         WebElement parentInventory = Driver.getDriver().findElement(By.xpath("(//input[@type='text'])[5]"));
         parentInventory.click();
@@ -38,7 +38,7 @@ public class Azamat extends TestBase{
 
         WebElement productHeader = Driver.getDriver().findElement(By.xpath("//span[@class='o_field_char o_field_widget o_required_modifier']"));
 
-        Assert.assertEquals(productHeader.getText(), Config.getProperty("productName"));
+        Assert.assertEquals(productHeader.getText(), "productName");
 
     }
 

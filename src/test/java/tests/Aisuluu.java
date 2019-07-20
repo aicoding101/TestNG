@@ -14,25 +14,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utilites.Config;
 import utilites.Driver;
+import utilites.TestBase;
 
 
 import java.util.concurrent.TimeUnit;
-public class Aisuluu {
+public class Aisuluu extends TestBase {
 
     @Test
-
-        public void discardFile(){
-        Driver.getDriver().get(Config.getProperty("url"));
-            WebElement login = Driver.getDriver().findElement(By.id("login"));
-            login.sendKeys(Config.getProperty("usernameUser"));
-            WebElement password = Driver.getDriver().findElement(By.id("password"));
-            password.sendKeys(Config.getProperty("passwordUser")+ Keys.ENTER);
-
-            WebElement inventoryTabdisplay= Driver.getDriver().findElement(By.linkText("Inventory"));
-            inventoryTabdisplay.click();
-
-            WebElement inventoryAdjustment = Driver.getDriver()
-                    .findElement(By.linkText("Inventory Adjustments"));
+    public void discardFile(){
+            WebElement inventoryAdjustment = Driver.getDriver().findElement(By.linkText("Inventory Adjustments"));
             inventoryAdjustment.click();
 
 
@@ -49,10 +39,8 @@ public class Aisuluu {
 
             //div[@class='input-group']/input
 
-
 //      //   uploadFile.sendKeys("/Users/aisu/Downloads/C2ImportCalEventSample.csv");
 //           uploadFile.sendKeys(Keys.ENTER);
-//
 
             WebElement cancelButton = Driver.getDriver().findElement(By.xpath("//button[@class='btn btn-sm btn-default o_import_cancel']"));
             cancelButton.click();
@@ -66,17 +54,8 @@ public class Aisuluu {
             Assert.assertTrue(inventoryAdjustment.isDisplayed(),"Inventory Adjustment is not displayed");
         }
 
-        @Test
-        public void inventoryManagement()  {
-            Driver.getDriver().get(Config.getProperty("url"));
-            WebElement login=Driver.getDriver().findElement(By.id("login"));
-            login.sendKeys(Config.getProperty("usernameManager"));
-            WebElement password = Driver.getDriver().findElement(By.id("password"));
-            password.sendKeys(Config.getProperty("passwordManager")+Keys.ENTER);
-
-            WebElement inventoryTabdisplay= Driver.getDriver().findElement(By.linkText("Inventory"));
-            inventoryTabdisplay.click();
-
+    @Test
+    public void inventoryManagement(){
             WebElement warehouseManagement= Driver.getDriver().findElement(By.linkText("Warehouse Management"));
             warehouseManagement.click();
 
@@ -91,7 +70,6 @@ public class Aisuluu {
 
             WebElement operationTypeName= Driver.getDriver().findElement(By.xpath("//input[@class='o_field_char o_field_widget o_input o_required_modifier']"));
             operationTypeName.sendKeys(myString);
-
 
             Faker faker1 = new Faker();
             String myString1 = Faker.instance().numerify("12345");
@@ -130,4 +108,4 @@ public class Aisuluu {
 
         }
 
-    }
+}
