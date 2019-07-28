@@ -308,13 +308,6 @@ public class SmokeTest extends TestBase {
 
     @Test
     public void SmokeSuite255() {
-        Driver.getDriver().get(Config.getProperty("url"));
-        WebElement login = Driver.getDriver().findElement(By.id("login"));
-        login.sendKeys(Config.getProperty("username"));
-        WebElement password = Driver.getDriver().findElement(By.id("password"));
-        password.sendKeys(Config.getProperty("password") + Keys.ENTER);
-        WebElement inventory = Driver.getDriver().findElement(By.linkText("Inventory"));
-        inventory.click();
         WebElement inventoryValuation = Driver.getDriver().findElement(By.linkText("Inventory Valuation"));
         inventoryValuation.click();
         WebElement retriveButton = Driver.getDriver().findElement(By.xpath("//button[@name='open_table']/span"));
