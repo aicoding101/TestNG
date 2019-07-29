@@ -35,7 +35,7 @@ public class Ameer extends TestBase {
         SAD.FindAndClick(Locators.xpath, "//span[contains(text(),'Ok')]");
     }
 
-    //    PLEASE READ COMMENTS INSIDE ProductGeneralInfo() AFTER FIRST TEST
+//    PLEASE READ COMMENTS INSIDE ProductGeneralInfo() AFTER FIRST TEST
 //    SOME VALUES MUST BE CHANGED AFTER RUNNING THE TEST ONCE TO ENSURE PROPER RUN AFTERWARDS
 //    VALUES TO CHANGE ARE SURROUNDED WITH --> /*change*/VALUE/*change*/
     @Test
