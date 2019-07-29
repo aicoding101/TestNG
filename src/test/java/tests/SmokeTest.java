@@ -4,12 +4,15 @@ import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilites.*;
 
 public class SmokeTest extends TestBase {
+    WebDriverWait wait = new WebDriverWait(SAD.getDriver(), 20);
 
 //    AMEER
     @Test
@@ -52,7 +55,7 @@ public class SmokeTest extends TestBase {
 
 //        NAME:
 //        MUST BE DIFFERENT EACH TEST
-        SAD.FindAndSendKeys(Locators.xpath, "//input[@placeholder='Product Name']", /*change*/"Aibek's Glasses"/*change*/);
+        SAD.FindAndSendKeys(Locators.xpath, "//input[@placeholder='Product Name']", /*change*/"AA"/*change*/);
 
         SAD.FindAndClick(Locators.xpath, "//select[@class='o_input o_field_widget o_required_modifier']");
         SAD.FindAndClick(Locators.xpath, "//option[contains(text(),'Stockable Product')]");
@@ -66,7 +69,7 @@ public class SmokeTest extends TestBase {
         SAD.ClearField(Locators.name, "barcode");
 
 //        MUST BE DIFFERENT EACH TEST
-        SAD.FindAndSendKeys(Locators.name, "barcode", /*change*/"#1234567900"/*change*/);
+        SAD.FindAndSendKeys(Locators.name, "barcode", /*change*/"#233"/*change*/);
 
         SAD.FindAndClick(Locators.xpath, "//input[@class='o_input']");
         SAD.ClearField(Locators.xpath, "//input[@class='o_input']");
@@ -80,7 +83,7 @@ public class SmokeTest extends TestBase {
 
         Thread.sleep(2000);
 //        CHANGE ACCORDING TO NAME ABOVE
-        Assert.assertEquals(SAD.GetWebElement(Locators.xpath, "//ol//li[@class='active']").getText(), "[Reference Name] " + /*change*/"Aibek's Glasses"/*change*/);
+        Assert.assertEquals(SAD.GetWebElement(Locators.xpath, "//ol//li[@class='active']").getText(), "[Reference Name] " + /*change*/"AA"/*change*/);
 
     }
 
@@ -138,7 +141,7 @@ public class SmokeTest extends TestBase {
         operationTypeName.sendKeys(myString);
 
         Faker faker1 = new Faker();
-        String myString1 = Faker.instance().numerify("12345");
+        String myString1 = Faker.instance().numerify("54321");
         WebElement referenceSeq = Driver.getDriver().findElement(By.xpath("(//input[@class='o_input ui-autocomplete-input'])[1]"));
         referenceSeq.sendKeys(myString1);
 
@@ -179,7 +182,7 @@ public class SmokeTest extends TestBase {
     @Test
     public void createProductCategories(){
         WebElement products = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=351&action=']"));
-        products.click();
+        wait.until(ExpectedConditions.elementToBeClickable(products)).click();
         WebElement productCategories = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=354&action=232']"));
         productCategories.click();
 
@@ -211,8 +214,9 @@ public class SmokeTest extends TestBase {
 
     @Test
     public void discardScrapOrdersCreation(){
+
         WebElement scrap = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=369&action=501']"));
-        scrap.click();
+        wait.until(ExpectedConditions.elementToBeClickable(scrap)).click();
 
         WebElement createButton = Driver.getDriver().findElement(By.xpath("//div[@class='o_list_buttons']/button[1]"));
         createButton.click();
@@ -272,11 +276,13 @@ public class SmokeTest extends TestBase {
 //CHOLPON
     @Test
     public void firstMethod() throws InterruptedException{
+
+
     WebElement products = Driver.getDriver().findElement(By.linkText("Products"));
     products.click();
     Thread.sleep(2000);
     WebElement createButton = Driver.getDriver().findElement(By.xpath("//div[@class='o_cp_buttons']//div[1]//button[1]"));
-    createButton.click();
+    wait.until(ExpectedConditions.elementToBeClickable(createButton)).click();
     WebElement purchaseTab = Driver.getDriver().findElement(By.linkText("Purchase"));
     purchaseTab.click();
     WebElement findAnItemTab = Driver.getDriver().findElement(By.linkText("Add an item"));

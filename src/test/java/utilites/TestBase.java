@@ -49,9 +49,9 @@ public class TestBase {
 //        inventory.click();
 //    }
 
-//    @AfterMethod
-//    public void tearDown() {
-//        SAD.Done();
-//    }
+    @AfterMethod
+    public void tearDown() {
+        SAD.Done();
+    }
 
 }
