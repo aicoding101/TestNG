@@ -5,11 +5,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utilites.*;
 
 public class SmokeTest extends TestBase {
+
+    WebDriverWait wait = new WebDriverWait(SAD.getDriver(), 20);
 
 //    AMEER
     @Test
@@ -52,7 +55,11 @@ public class SmokeTest extends TestBase {
 
 //        NAME:
 //        MUST BE DIFFERENT EACH TEST
+
         SAD.FindAndSendKeys(Locators.xpath, "//input[@placeholder='Product Name']", /*change*/"Aibek's Glasses"/*change*/);
+
+        SAD.FindAndSendKeys(Locators.xpath, "//input[@placeholder='Product Name']", /*change*/"AAA"/*change*/);
+
 
         SAD.FindAndClick(Locators.xpath, "//select[@class='o_input o_field_widget o_required_modifier']");
         SAD.FindAndClick(Locators.xpath, "//option[contains(text(),'Stockable Product')]");
@@ -66,7 +73,11 @@ public class SmokeTest extends TestBase {
         SAD.ClearField(Locators.name, "barcode");
 
 //        MUST BE DIFFERENT EACH TEST
+
         SAD.FindAndSendKeys(Locators.name, "barcode", /*change*/"#1234567900"/*change*/);
+
+        SAD.FindAndSendKeys(Locators.name, "barcode", /*change*/"#98787"/*change*/);
+
 
         SAD.FindAndClick(Locators.xpath, "//input[@class='o_input']");
         SAD.ClearField(Locators.xpath, "//input[@class='o_input']");
@@ -80,7 +91,11 @@ public class SmokeTest extends TestBase {
 
         Thread.sleep(2000);
 //        CHANGE ACCORDING TO NAME ABOVE
+
         Assert.assertEquals(SAD.GetWebElement(Locators.xpath, "//ol//li[@class='active']").getText(), "[Reference Name] " + /*change*/"Aibek's Glasses"/*change*/);
+
+        Assert.assertEquals(SAD.GetWebElement(Locators.xpath, "//ol//li[@class='active']").getText(), "[Reference Name] " + /*change*/"AAA"/*change*/);
+
 
     }
 
@@ -239,6 +254,7 @@ public class SmokeTest extends TestBase {
 
 
 //    TUGBA
+
     @Test
     public void Transfers() throws InterruptedException{
     SAD.WaitTime(20);
@@ -248,6 +264,18 @@ public class SmokeTest extends TestBase {
     Assert.assertEquals(Driver.getDriver().getCurrentUrl(),"http://54.148.96.210/web?#view_type=list&model=stock.picking&menu_id=368&action=490","Search Box verification is FAILED!");
 }
 
+//    @Test
+//    public void Tugbasmethod() throws InterruptedException{
+//    SAD.WaitTime(20);
+//    WebElement transferTab = Driver.getDriver().findElement(By.linkText("Transfers"));
+//    transferTab.click();
+//    WebElement searchBox = Driver.getDriver().findElement(By.xpath("/html/body/div[1]/div[2]/div[1]/div[1]/div/input"));
+//    searchBox.sendKeys("anything" + Keys.ENTER);
+//    Thread.sleep(2000);
+//    Assert.assertEquals(Driver.getDriver().getCurrentUrl(),"http://54.148.96.210/web?#view_type=list&model=stock.picking&menu_id=368&action=490","Search Box verification is FAILED!");
+//}
+
+
 
 //CHOLPON
     @Test
@@ -256,7 +284,12 @@ public class SmokeTest extends TestBase {
     products.click();
     Thread.sleep(2000);
     WebElement createButton = Driver.getDriver().findElement(By.xpath("//div[@class='o_cp_buttons']//div[1]//button[1]"));
+
     createButton.click();
+
+    Thread.sleep(1000);
+    wait.until(ExpectedConditions.elementToBeClickable(createButton)).click();
+
     WebElement purchaseTab = Driver.getDriver().findElement(By.linkText("Purchase"));
     purchaseTab.click();
     WebElement findAnItemTab = Driver.getDriver().findElement(By.linkText("Add an item"));
