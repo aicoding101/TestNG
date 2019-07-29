@@ -12,10 +12,9 @@ import org.testng.annotations.Test;
 import utilites.*;
 
 public class SmokeTest extends TestBase {
-
     WebDriverWait wait = new WebDriverWait(SAD.getDriver(), 20);
 
-//    AMEER
+    //    AMEER
     @Test
     public void WarehouseManagement(){
         SAD.WaitTime(20);
@@ -42,7 +41,7 @@ public class SmokeTest extends TestBase {
         SAD.FindAndClick(Locators.xpath, "//span[contains(text(),'Ok')]");
     }
 
-//    PLEASE READ COMMENTS INSIDE ProductGeneralInfo() AFTER FIRST TEST
+    //    PLEASE READ COMMENTS INSIDE ProductGeneralInfo() AFTER FIRST TEST
 //    SOME VALUES MUST BE CHANGED AFTER RUNNING THE TEST ONCE TO ENSURE PROPER RUN AFTERWARDS
 //    VALUES TO CHANGE ARE SURROUNDED WITH --> /*change*/VALUE/*change*/
     @Test
@@ -56,10 +55,7 @@ public class SmokeTest extends TestBase {
 
 //        NAME:
 //        MUST BE DIFFERENT EACH TEST
-
-
-        SAD.FindAndSendKeys(Locators.xpath, "//input[@placeholder='Product Name']", /*change*/"AAA"/*change*/);
-
+        SAD.FindAndSendKeys(Locators.xpath, "//input[@placeholder='Product Name']", /*change*/"AA"/*change*/);
 
         SAD.FindAndClick(Locators.xpath, "//select[@class='o_input o_field_widget o_required_modifier']");
         SAD.FindAndClick(Locators.xpath, "//option[contains(text(),'Stockable Product')]");
@@ -73,9 +69,7 @@ public class SmokeTest extends TestBase {
         SAD.ClearField(Locators.name, "barcode");
 
 //        MUST BE DIFFERENT EACH TEST
-
-        SAD.FindAndSendKeys(Locators.name, "barcode", /*change*/"#98787"/*change*/);
-
+        SAD.FindAndSendKeys(Locators.name, "barcode", /*change*/"#233"/*change*/);
 
         SAD.FindAndClick(Locators.xpath, "//input[@class='o_input']");
         SAD.ClearField(Locators.xpath, "//input[@class='o_input']");
@@ -89,14 +83,12 @@ public class SmokeTest extends TestBase {
 
         Thread.sleep(2000);
 //        CHANGE ACCORDING TO NAME ABOVE
-
-        Assert.assertEquals(SAD.GetWebElement(Locators.xpath, "//ol//li[@class='active']").getText(), "[Reference Name] " + /*change*/"AAA"/*change*/);
-
+        Assert.assertEquals(SAD.GetWebElement(Locators.xpath, "//ol//li[@class='active']").getText(), "[Reference Name] " + /*change*/"AA"/*change*/);
 
     }
 
 
-//    AISULUU
+    //    AISULUU
     @Test
     public void discardFile(){
         WebElement inventoryAdjustment = Driver.getDriver().findElement(By.linkText("Inventory Adjustments"));
@@ -149,7 +141,7 @@ public class SmokeTest extends TestBase {
         operationTypeName.sendKeys(myString);
 
         Faker faker1 = new Faker();
-        String myString1 = Faker.instance().numerify("12345");
+        String myString1 = Faker.instance().numerify("54321");
         WebElement referenceSeq = Driver.getDriver().findElement(By.xpath("(//input[@class='o_input ui-autocomplete-input'])[1]"));
         referenceSeq.sendKeys(myString1);
 
@@ -186,11 +178,11 @@ public class SmokeTest extends TestBase {
     }
 
 
-//    AZAMAT
+    //    AZAMAT
     @Test
     public void createProductCategories(){
         WebElement products = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=351&action=']"));
-        products.click();
+        wait.until(ExpectedConditions.elementToBeClickable(products)).click();
         WebElement productCategories = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=354&action=232']"));
         productCategories.click();
 
@@ -222,8 +214,9 @@ public class SmokeTest extends TestBase {
 
     @Test
     public void discardScrapOrdersCreation(){
+
         WebElement scrap = Driver.getDriver().findElement(By.xpath("//a[@href='/web#menu_id=369&action=501']"));
-        scrap.click();
+        wait.until(ExpectedConditions.elementToBeClickable(scrap)).click();
 
         WebElement createButton = Driver.getDriver().findElement(By.xpath("//div[@class='o_list_buttons']/button[1]"));
         createButton.click();
@@ -236,87 +229,91 @@ public class SmokeTest extends TestBase {
     }
 
 
-//    AZIZA
+    //    AZIZA
     @Test
     public void cancelFileImport(){
-        SAD.FindAndClick(Locators.xpath, "//div[@class='o_sub_menu_content']/div[6]//ul[1]/li[1]/a[1]");
 
-        SAD.FindAndClick(Locators.xpath, "//button[@class='btn btn-sm btn-default o_button_import']");
-        Assert.assertTrue(SAD.FindAndDisplay(Locators.xpath, "//button[@class='btn btn-sm btn-default o_button_import']"), "Import button is not displayed");
+//        SAD.getDriver().get(Config.getProperty("url"));
+//
+//        WebElement login = SAD.getDriver().findElement(By.id("login"));
+//        login.sendKeys(Config.getProperty("username"));
+//
+//        WebElement password = SAD.getDriver().findElement(By.id("password"));
+//        password.sendKeys(Config.getProperty("password") + Keys.ENTER);
 
-        SAD.FindAndClick(Locators.xpath, "//button[@class='btn btn-sm btn-default o_import_cancel']");
-        Assert.assertTrue(SAD.FindAndDisplay(Locators.xpath, "//button[@class='btn btn-sm btn-default o_import_cancel']"), "Cancel button is not displayed");
+//        WebElement inventoryTab = SAD.getDriver().findElement(By.xpath("//*[@id=\"oe_main_menu_navbar\"]/div[2]/ul[1]/li[6]/a/span"));
+//        inventoryTab.click();
+
+        WebElement transfersTab = SAD.getDriver().findElement(By.xpath("//div[@class='o_sub_menu_content']/div[6]//ul[1]/li[1]/a[1]"));
+        transfersTab.click();
+
+
+        WebElement importButton = SAD.getDriver().findElement(By.xpath("//button[@class='btn btn-sm btn-default o_button_import']"));
+        importButton.click();
+        Assert.assertTrue(importButton.isDisplayed(), "Import button is not displayed");
+
+
+        WebElement cancelButton = SAD.getDriver().findElement(By.xpath("//button[@class='btn btn-sm btn-default o_import_cancel']"));
+        cancelButton.click();
+        Assert.assertTrue(cancelButton.isDisplayed(), "Cancel button is not displayed");
+
     }
 
 
-//    TUGBA
-
-    @Test
-    public void Transfers() throws InterruptedException{
-    SAD.WaitTime(20);
-    SAD.FindAndClick(Locators.linkText, "Transfers");
-    SAD.FindAndSendKeysENTER(Locators.xpath, "/html/body/div[1]/div[2]/div[1]/div[1]/div/input", "anything");
-    Thread.sleep(2000);
-    Assert.assertEquals(Driver.getDriver().getCurrentUrl(),"http://54.148.96.210/web?#view_type=list&model=stock.picking&menu_id=368&action=490","Search Box verification is FAILED!");
-}
-
+    //    TUGBA
 //    @Test
 //    public void Tugbasmethod() throws InterruptedException{
-//    SAD.WaitTime(20);
-//    WebElement transferTab = Driver.getDriver().findElement(By.linkText("Transfers"));
-//    transferTab.click();
-//    WebElement searchBox = Driver.getDriver().findElement(By.xpath("/html/body/div[1]/div[2]/div[1]/div[1]/div/input"));
-//    searchBox.sendKeys("anything" + Keys.ENTER);
-//    Thread.sleep(2000);
-//    Assert.assertEquals(Driver.getDriver().getCurrentUrl(),"http://54.148.96.210/web?#view_type=list&model=stock.picking&menu_id=368&action=490","Search Box verification is FAILED!");
-//}
+//        SAD.WaitTime(20);
+//        WebElement transferTab = Driver.getDriver().findElement(By.linkText("Transfers"));
+//        transferTab.click();
+//        WebElement searchBox = Driver.getDriver().findElement(By.xpath("/html/body/div[1]/div[2]/div[1]/div[1]/div/input"));
+//        searchBox.sendKeys("anything" + Keys.ENTER);
+//        Thread.sleep(2000);
+//        Assert.assertEquals(Driver.getDriver().getCurrentUrl(),"http://54.148.96.210/web?#view_type=list&model=stock.picking&menu_id=368&action=490","Search Box verification is FAILED!");
+//    }
 
 
-
-//CHOLPON
+    //CHOLPON
     @Test
-    public void Products() throws InterruptedException{
-    WebElement products = Driver.getDriver().findElement(By.linkText("Products"));
-    products.click();
-    Thread.sleep(2000);
-    WebElement createButton = Driver.getDriver().findElement(By.xpath("//div[@class='o_cp_buttons']//div[1]//button[1]"));
+    public void firstMethod() throws InterruptedException{
 
-    createButton.click();
 
-    Thread.sleep(1000);
-    wait.until(ExpectedConditions.elementToBeClickable(createButton)).click();
-
-    WebElement purchaseTab = Driver.getDriver().findElement(By.linkText("Purchase"));
-    purchaseTab.click();
-    WebElement findAnItemTab = Driver.getDriver().findElement(By.linkText("Add an item"));
-    findAnItemTab.click();
-    WebElement vendorTab = Driver.getDriver().findElement(By.xpath("(//input[@class='o_input ui-autocomplete-input'])[22]"));
-    vendorTab.sendKeys("Anything"+ Keys.TAB);
-    WebElement productName = Driver.getDriver().findElement(By.xpath("//input[@name='product_name']"));
-    productName.click();
-    WebElement productCode = Driver.getDriver().findElement(By.xpath("//input[@name='product_code']"));
-    productCode.click();
-    WebElement deliveryLeadTime = Driver.getDriver().findElement(By.xpath("//input[@name='delay']"));
-    deliveryLeadTime.click();
-    WebElement minimalQuantity = Driver.getDriver().findElement(By.xpath("//input[@name='min_qty']"));
-    minimalQuantity.click();
-    WebElement priceField = Driver.getDriver().findElement(By.xpath("//input[@name='price']"));
-    priceField.click();
-    WebElement validityStartDate = Driver.getDriver().findElement(By.xpath("//input[@name='date_start']"));
-    validityStartDate.sendKeys("01-01-2019");
-    validityStartDate.click();
-    WebElement vaidityEndDate = Driver.getDriver().findElement(By.xpath("//input[@name='date_end']"));
-    vaidityEndDate.sendKeys("01-30-2019");
-    vaidityEndDate.click();
-    WebElement saveAndClose = Driver.getDriver().findElement(By.xpath("//div[@class='modal-footer']/button[1]"));
-    saveAndClose.click();
-    WebElement discard = Driver.getDriver().findElement(By.xpath("//div[@class='modal-footer']//button[3]//span"));
-    discard.click();
-    Assert.assertEquals(Driver.getDriver().getCurrentUrl(), "http://54.148.96.210/web?#id=&view_type=form&model=product.template&menu_id=378&action=521", "Discard Button verification is Not Passes");
-}
+        WebElement products = Driver.getDriver().findElement(By.linkText("Products"));
+        products.click();
+        Thread.sleep(2000);
+        WebElement createButton = Driver.getDriver().findElement(By.xpath("//div[@class='o_cp_buttons']//div[1]//button[1]"));
+        wait.until(ExpectedConditions.elementToBeClickable(createButton)).click();
+        WebElement purchaseTab = Driver.getDriver().findElement(By.linkText("Purchase"));
+        purchaseTab.click();
+        WebElement findAnItemTab = Driver.getDriver().findElement(By.linkText("Add an item"));
+        findAnItemTab.click();
+        WebElement vendorTab = Driver.getDriver().findElement(By.xpath("(//input[@class='o_input ui-autocomplete-input'])[22]"));
+        vendorTab.sendKeys("Anything"+ Keys.TAB);
+        WebElement productName = Driver.getDriver().findElement(By.xpath("//input[@name='product_name']"));
+        productName.click();
+        WebElement productCode = Driver.getDriver().findElement(By.xpath("//input[@name='product_code']"));
+        productCode.click();
+        WebElement deliveryLeadTime = Driver.getDriver().findElement(By.xpath("//input[@name='delay']"));
+        deliveryLeadTime.click();
+        WebElement minimalQuantity = Driver.getDriver().findElement(By.xpath("//input[@name='min_qty']"));
+        minimalQuantity.click();
+        WebElement priceField = Driver.getDriver().findElement(By.xpath("//input[@name='price']"));
+        priceField.click();
+        WebElement validityStartDate = Driver.getDriver().findElement(By.xpath("//input[@name='date_start']"));
+        validityStartDate.sendKeys("01-01-2019");
+        validityStartDate.click();
+        WebElement vaidityEndDate = Driver.getDriver().findElement(By.xpath("//input[@name='date_end']"));
+        vaidityEndDate.sendKeys("01-30-2019");
+        vaidityEndDate.click();
+        WebElement saveAndClose = Driver.getDriver().findElement(By.xpath("//div[@class='modal-footer']/button[1]"));
+        saveAndClose.click();
+        WebElement discard = Driver.getDriver().findElement(By.xpath("//div[@class='modal-footer']//button[3]//span"));
+        discard.click();
+        Assert.assertEquals(Driver.getDriver().getCurrentUrl(), "http://54.148.96.210/web?#id=&view_type=form&model=product.template&menu_id=378&action=521", "Discard Button verification is Not Passes");
+    }
 
     @Test
-    public void InventoryValuation() {
+    public void SmokeSuite255() {
         WebElement inventoryValuation = Driver.getDriver().findElement(By.linkText("Inventory Valuation"));
         inventoryValuation.click();
         WebElement retriveButton = Driver.getDriver().findElement(By.xpath("//button[@name='open_table']/span"));
