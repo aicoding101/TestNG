@@ -57,7 +57,6 @@ public class SmokeTest extends TestBase {
 //        NAME:
 //        MUST BE DIFFERENT EACH TEST
 
-        SAD.FindAndSendKeys(Locators.xpath, "//input[@placeholder='Product Name']", /*change*/"Aibek's Glasses"/*change*/);
 
         SAD.FindAndSendKeys(Locators.xpath, "//input[@placeholder='Product Name']", /*change*/"AAA"/*change*/);
 
@@ -75,8 +74,6 @@ public class SmokeTest extends TestBase {
 
 //        MUST BE DIFFERENT EACH TEST
 
-        SAD.FindAndSendKeys(Locators.name, "barcode", /*change*/"#1234567900"/*change*/);
-
         SAD.FindAndSendKeys(Locators.name, "barcode", /*change*/"#98787"/*change*/);
 
 
@@ -92,8 +89,6 @@ public class SmokeTest extends TestBase {
 
         Thread.sleep(2000);
 //        CHANGE ACCORDING TO NAME ABOVE
-
-        Assert.assertEquals(SAD.GetWebElement(Locators.xpath, "//ol//li[@class='active']").getText(), "[Reference Name] " + /*change*/"Aibek's Glasses"/*change*/);
 
         Assert.assertEquals(SAD.GetWebElement(Locators.xpath, "//ol//li[@class='active']").getText(), "[Reference Name] " + /*change*/"AAA"/*change*/);
 
