@@ -1,19 +1,19 @@
-# eclipse project file
-.settings/
+# Eclipse
 .classpath
 .project
-
-# IntelliJ project files
+.settings/
+ 
+# Intellij
+.idea/
 *.iml
 *.iws
-*.ipr
-.idea/
-
-# Misc
-*.swp
-release.properties
-pom.xml.releaseBackup
-pom.xml.tag
-
+.idea/workspace.xml
+ 
+# Mac
+.DS_Store
+ 
 # Maven
+log/
 target/
+# configuration properties should be ignored to secure confidential data
+configuration.properties
